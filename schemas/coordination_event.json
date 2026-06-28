@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12",
+  "title": "CoordinationEvent",
+  "description": "Standard schema for cross-domain coordination events in AfriKaziOS",
+  "type": "object",
+  "required": [
+    "event_id",
+    "domain",
+    "event_type",
+    "timestamp",
+    "location",
+    "source"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier (UUID)"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "health",
+        "water",
+        "agriculture",
+        "energy",
+        "transport",
+        "education",
+        "procurement"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Domain-specific event type (e.g. 'drought_alert', 'stockout', 'price_spike')"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "alert",
+        "critical"
+      ],
+      "default": "info"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "county": {
+          "type": "string",
+          "description": "Kenya county name"
+        },
+        "county_code": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 47
+        },
+        "sub_county": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lon": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "string",
+      "description": "MCP server or system that generated the event"
+    },
+    "data": {
+      "type": "object",
+      "description": "Domain-specific event data"
+    },
+    "cross_domain_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related events in other domains this event should trigger"
+    },
+    "privacy_level": {
+      "type": "string",
+      "enum": [
+        "aggregate",
+        "anonymized",
+        "identified"
+      ],
+      "default": "aggregate"
+    },
+    "requires_action": {
+      "type": "boolean",
+      "default": false
+    },
+    "action_deadline": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
