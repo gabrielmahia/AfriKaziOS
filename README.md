@@ -1,108 +1,76 @@
 # AfriKaziOS
 
-**AfriKaziOS** is an AI-supported institutional nervous system for African infrastructure.
+> AI-supported institutional coordination infrastructure for Africa — health, water, energy, agriculture, transport, education, procurement.
 
-It is designed to help communities, counties, ministries, utilities, SMEs, churches, schools, hospitals, cooperatives, and diaspora networks build, secure, maintain, audit, and learn from infrastructure.
+**Private research and architecture repository.**
+
+---
 
 ## Mission
 
-> Build coordination infrastructure for Africa: evidence-backed planning, accountable execution, local memory, and human-approved AI assistance.
+African infrastructure coordination suffers from the same structural problem across every domain:
 
-## Core thesis
+- Data exists but is not structured for AI access
+- Systems exist but do not communicate with each other  
+- Knowledge exists but is not actionable at the point of decision
 
-Africa does not primarily lack intelligence. It lacks reliable coordination layers, trusted data, institutional memory, maintenance discipline, procurement transparency, resilient digital infrastructure, and feedback loops.
+AfriKaziOS is the architecture for closing those gaps — domain by domain, protocol by protocol.
 
-AfriKaziOS is not another chatbot. It is a practical operating system for decisions.
+## Architecture
 
-```text
-local reality
-↓
-trusted data capture
-↓
-knowledge graph
-↓
-specialist agents
-↓
-evidence-backed recommendations
-↓
-human approval
-↓
-execution tracking
-↓
-memory and learning
+```
+AfriKaziOS
+├── domains/          # Domain-specific coordination layers
+│   ├── energy/
+│   ├── water/
+│   ├── health/
+│   ├── agriculture/
+│   ├── transport/
+│   ├── education/
+│   └── procurement/
+├── docs/             # Architecture, prior art, governance
+├── schemas/          # Shared data schemas (JSON Schema / Pydantic)
+├── workflows/        # Coordination workflow definitions
+└── reports/          # Analysis and research
 ```
 
-## Operating doctrine
+## Domains
 
-> AI proposes. Evidence verifies. Humans approve. Systems remember.
+| Domain | Status | MCP Integration | Key Data Sources |
+|--------|--------|----------------|-----------------|
+| Agriculture | Active | kilimo-mcp, wapimaji-mcp | USDA PD, Kew Gardens PD, NASA NDVI |
+| Water | Active | wapimaji-mcp | CHIRPS, TRMM, NOAA |
+| Health | Architecture | afya-mcp | WHO, county-mcp |
+| Education | Planning | elimu-mcp | National exam data, DHIS2 |
+| Transport | Planning | usafiri-mcp | OSM, infrastructure surveys |
+| Energy | Research | — | IRENA, AfDB data |
+| Procurement | Research | — | Kenya PPRA, OCDS |
 
-## Initial domains
+## Design Principles
 
-- energy
-- water and sanitation
-- transport and roads
-- agriculture and food systems
-- health access
-- education infrastructure
-- procurement and governance
-- cyber and digital public infrastructure
-- diaspora project oversight
+**1. Offline-first.** Coordination tools must work with intermittent connectivity.
+Infrastructure decisions are often made in the field, not at a desk.
 
-## Repository layout
+**2. Public domain where possible.** Historical knowledge is free.
+Structuring it for AI access is the work.
 
-```text
-docs/        strategy, prior art, governance, biomimicry, architecture
-domains/     domain-specific infrastructure modules
-schemas/     structured data contracts
-workflows/   repeatable triage and planning workflows
-reports/     report templates and generated outputs
-config/      policy and model-routing configuration
-af-kazi/     future package namespace placeholder
-```
+**3. Model-agnostic.** The coordination layer must work regardless of which LLM
+is used — Gemini, Claude, GPT, or open-weight models running locally.
 
-## First MVP
+**4. Biomimicry as architecture.** Immune systems, mycelial networks, and ant
+colonies solve coordination problems at scale without central control.
+African infrastructure faces the same challenge.
 
-**County Infrastructure Triage**
+**5. Governance built in.** Not retrofitted. Civil liberties and data sovereignty
+considerations are part of the architecture, not compliance afterthoughts.
 
-Input:
+## Related Public Repositories
 
-- asset list
-- location
-- current condition
-- last maintenance date
-- population served
-- economic importance
-- climate exposure
-- budget estimate
-- citizen or field reports
+- [mpesa-mcp](https://github.com/gabrielmahia/mpesa-mcp) — payments
+- [wapimaji-mcp](https://github.com/gabrielmahia/wapimaji-mcp) — water/drought
+- [kilimo-mcp](https://github.com/gabrielmahia/kilimo-mcp) — agriculture
+- [swahili-civic-nlp](https://github.com/gabrielmahia/swahili-civic-nlp) — language
 
-Output:
+---
 
-- priority ranking
-- evidence summary
-- uncertainty label
-- maintenance recommendation
-- project brief
-- human-review checklist
-
-## Model strategy
-
-AfriKaziOS is model-agnostic.
-
-```text
-closed frontier model = high-risk reasoning
-open-weight model = sovereign deployment
-small local model = field/offline mode
-rules engine = critical deterministic checks
-human = final authority
-```
-
-## Governance principle
-
-AfriKaziOS should strengthen institutions, not bypass them.
-
-No automated high-impact decision should proceed without human review, transparent evidence, and auditability.
-
-## Status
-
-Initial strategy scaffold.
+*Private repository. Architecture and research.*
