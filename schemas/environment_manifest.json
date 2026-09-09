@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gabrielmahia/AfriKaziOS/schemas/environment_manifest.json",
+  "title": "AfriKaziOS Environment Manifest",
+  "description": "Explicit local context required to compile a portable institutional/cognitive phenotype. Unknown fields should be omitted or represented as unknown by the consuming workflow; they must not be guessed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "environment_id",
+    "location_scope",
+    "languages",
+    "ecological_regime",
+    "infrastructure_modes",
+    "authoritative_sources",
+    "human_authorities",
+    "last_verified"
+  ],
+  "properties": {
+    "environment_id": {"type": "string", "minLength": 1},
+    "location_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description"],
+      "properties": {
+        "description": {"type": "string", "minLength": 1},
+        "country": {"type": ["string", "null"]},
+        "admin_area": {"type": ["string", "null"]},
+        "geometry_ref": {"type": ["string", "null"]}
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "livelihoods": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "ecological_regime": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "infrastructure_modes": {
+      "type": "array",
+      "items": {"enum": ["offline", "intermittent", "2g", "3g", "4g", "5g", "wifi", "lan", "shared-device", "basic-phone", "smartphone", "laptop", "local-server"]},
+      "uniqueItems": true
+    },
+    "authoritative_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "authority", "freshness_requirement"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "authority": {"type": "string"},
+          "freshness_requirement": {"type": "string"},
+          "access_mode": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "available_tools": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "offline_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": {"type": "boolean"},
+        "minimum_hours": {"type": ["number", "null"], "minimum": 0},
+        "stale_data_behavior": {"enum": ["abstain", "degrade", "human-escalation", "workflow-specific"]}
+      }
+    },
+    "human_authorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "scope"],
+        "properties": {
+          "role": {"type": "string"},
+          "scope": {"type": "string"},
+          "contact_ref": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "known_failure_modes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "last_verified": {"type": "string", "format": "date-time"}
+  }
+}
